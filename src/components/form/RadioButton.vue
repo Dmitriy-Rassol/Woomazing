@@ -1,6 +1,5 @@
 <script setup>
 import { computed } from 'vue';
-import IconClose from '@/components/icons/IconClose.vue'
 const props = defineProps({
     option: {
         required: true,

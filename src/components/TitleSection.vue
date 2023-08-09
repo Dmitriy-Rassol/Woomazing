@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps({
+defineProps({
     title: {
         type: String,
         default: '',
@@ -18,7 +18,6 @@ const props = defineProps({
     font-size: 40px;
     line-height: 110%;
     letter-spacing: 0.02em;
-    margin-top: 130px;
     margin-bottom: 92px;
 
 }

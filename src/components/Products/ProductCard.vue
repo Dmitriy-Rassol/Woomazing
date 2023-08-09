@@ -1,5 +1,5 @@
 <script setup>
-import IconArrowRight from '../icons/IconArrowRight.vue';
+import IconArrowRight from '../icons/arrows/IconArrowRight.vue';
 defineProps({
     product: {
         type: Object,

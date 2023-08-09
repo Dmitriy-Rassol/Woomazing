@@ -1,15 +1,15 @@
 <script setup>
-import AppTitlePage from '@/components/AppTitlePage.vue';
+import TitlePage from '@/components/TitlePage.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
-import Map from '../components/Map.vue';
-import ContactsList from '../components/ContactsList.vue';
+import Map from '../components/sections/Map.vue';
+import ContactsList from '../components/sections/ContactsList.vue';
 import { computed, reactive } from 'vue';
 import { useRoute } from 'vue-router';
-import AppForm from '../components/AppForm.vue';
-import AppButton from '../components/AppButton.vue';
-import AppInput from '../components/AppInput.vue';
-import AppTextArea from '../components/AppTextArea.vue';
-import AppAlert from '@/components/AppAlert.vue'
+import Form from '../components/form/Form.vue';
+import Button from '../components/Button.vue';
+import Input from '../components/form/Input.vue';
+import TextArea from '../components/form/TextArea.vue';
+import Alert from '@/components/Alert.vue'
 import { useFilterStore } from "../stores/FilterStore";
 
 const filterStore = useFilterStore();
@@ -91,30 +91,26 @@ const submitForm = () => {
 </script>
 
 <template>
-    <div class="contact">
-        <AppAlert :message="'Сообщение отправлено'" :isActive="filterStore.activeAlert" />
-        <AppTitlePage :title="name" />
+    <div class="contact section">
+        <Alert :message="'Сообщение отправлено'" :isActive="filterStore.activeAlert" />
+        <TitlePage :title="name" />
         <Breadcrumbs :section="name" />
         <Map />
         <ContactsList />
-        <AppForm :title="'Напишите нам'" @submitForm="submitForm">
+        <Form :title="'Напишите нам'" @submitForm="submitForm">
             <template #input>
-                <AppInput id="username" type="text" label="Имя" :errorMessage="errors.username" v-model="formData.username"
+                <Input id="username" type="text" label="Имя" :errorMessage="errors.username" v-model="formData.username"
                     autocomplete="text" />
-                <AppInput id="email" type="email" label="E-mail" :errorMessage="errors.email" autocomplete="email"
+                <Input id="email" type="email" label="E-mail" :errorMessage="errors.email" autocomplete="email"
                     v-model="formData.email" />
-                <AppInput id="tel" type="tel" label="Телефон" :errorMessage="errors.tel" autocomplete="tel"
+                <Input id="tel" type="tel" label="Телефон" :errorMessage="errors.tel" autocomplete="tel"
                     v-model="formData.tel" />
-                <AppTextArea id="message" name="message" label="Сообщение" v-model="formData.message" />
-                <AppButton :title="'Отправить'" :type="'submit'" />
+                <TextArea id="message" name="message" label="Сообщение" v-model="formData.message" />
+                <Button :title="'Отправить'" :type="'submit'" />
             </template>
-        </AppForm>
+        </Form>
     </div>
 </template>
 
 <style lang="scss" scoped>
-.contact {
-    padding-top: 190px;
-    padding-bottom: 130px;
-}
 </style>

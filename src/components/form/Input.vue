@@ -1,7 +1,6 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import { Logger } from 'sass';
 import { computed } from 'vue';
-
 
 const props = defineProps({
     id: {
@@ -109,7 +108,7 @@ const isCheckedRadio = computed(() => {
     }
 
     &:focus {
-        border-bottom: 3px solid;
+        border-bottom: 2px solid;
         padding: 8px 0 7px;
 
     }

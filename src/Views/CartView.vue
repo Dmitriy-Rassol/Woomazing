@@ -1,10 +1,11 @@
 <script setup>
 import { computed, watch } from "vue";
 import { useCartStore } from "../stores/CartStore";
-import AppTitlePage from '@/components/AppTitlePage.vue';
+import TitlePage from '@/components/TitlePage.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
-import AppButton from '@/components/AppButton.vue';
+import Button from '@/components/Button.vue';
 import IconClose from "../components/icons/IconClose.vue";
+import IconEmptyBasket from '../components/icons/IconEmptyBasket.vue';
 
 const cartStore = useCartStore();
 
@@ -37,8 +38,8 @@ watch(
 </script>
 
 <template>
-    <div class="cart-wrapper">
-        <AppTitlePage :title="'Корзина'" />
+    <div class="cart-wrapper section">
+        <TitlePage :title="'Корзина'" />
         <Breadcrumbs :section="'Корзина'" />
         <div class="cart-content" v-if="cart.length">
             <div class="cart-header">
@@ -55,7 +56,7 @@ watch(
                         <button @click="cartStore.deleteToCart(item)">
                             <IconClose />
                         </button>
-                        <router-link class="cart-item__link" :to="`product/${item.id}/${item.type}`">
+                        <router-link class="cart-item__link" :to="`product/${item.type}/${item.id}`">
                             <div class="cart-img">
                                 <img :src="`/src/assets/img/products/${item.type}/${item.img}`" :alt="item.title">
                             </div>
@@ -69,15 +70,15 @@ watch(
                 </div>
             </div>
             <div class="cart-total">
-                <AppButton :title="'Очистить корзину'" @click="cartStore.cart = []" />
+                <Button :title="'Очистить корзину'" @click="cartStore.cart = []" />
                 <div class="cart-total__order">
                     <div class="cart-total__value"><span>Итого: </span><span>${{ totalCart }}</span> </div>
-                    <AppButton :title="'Оформить заказ'" @path="$router.push('/order')" />
+                    <Button :title="'Оформить заказ'" @path="$router.push('/order')" />
                 </div>
             </div>
         </div>
         <div v-else class="cart-empty ">
-            <img src="/src/assets/img/empty-basket.svg" alt="empty">
+            <IconEmptyBasket/>
         </div>
 
     </div>
@@ -86,9 +87,6 @@ watch(
 <style lang="scss" scoped>
 
 .cart {
-    &-wrapper {
-        padding: 130px 0;
-    }
 
     &-header {
         display: grid;

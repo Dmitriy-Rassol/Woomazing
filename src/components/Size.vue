@@ -1,14 +1,19 @@
 <script setup>
 import { useFilterStore } from "@/stores/FilterStore";
+import { onMounted } from "vue";
 
 const filterStore = useFilterStore();
 
-const setTab = (id, size) => {
-    filterStore.setActiveSize(id, size);
+const setTab = (id, tab) => {
+    filterStore.setActiveSize(id, tab);
 };
 
-defineProps({
-    size: {
+onMounted(()=> {
+    setTab(0, props.sizes[0])
+})
+
+const props = defineProps({
+    sizes: {
         type: Array
     }
 })
@@ -18,8 +23,9 @@ defineProps({
     <div class="size">
         <h3 class="size-title">Выберите Размер</h3>
         <div class="size-wrapper">
-            <button :class="['size-btn', { 'size-btn--active': filterStore.activeSize === i }]" v-for="(tab, i) in size"
-                :key="i" @click="setTab(i, tab)">{{ tab }}</button>
+            <button :class="['size-btn', { 'size-btn--active': filterStore.activeSize === i }]" v-for="(tab, i) in sizes"
+                :key="i" @click="setTab(i, tab)">{{ tab.seze }}
+           </button>
         </div>
     </div>
 </template>

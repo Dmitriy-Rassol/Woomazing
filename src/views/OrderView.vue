@@ -1,12 +1,12 @@
 <script setup>
 import { computed, reactive, watch } from "vue";
 import { useCartStore } from "../stores/CartStore";
-import AppTitlePage from '@/components/AppTitlePage.vue';
+import TitlePage from '@/components/TitlePage.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
-import AppForm from '../components/AppForm.vue';
-import AppButton from '../components/AppButton.vue';
-import AppInput from '../components/AppInput.vue';
-import AppTextArea from '../components/AppTextArea.vue';
+import Form from '../components/form/Form.vue';
+import Button from '../components/Button.vue';
+import Input from '../components/form/Input.vue';
+import TextArea from '../components/form/TextArea.vue';
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -154,38 +154,38 @@ watch(
 
 <template>
     <div class="order">
-        <AppTitlePage :title="'Оформление заказа'" />
+        <TitlePage :title="'Оформление заказа'" />
         <Breadcrumbs :section="'Оформление заказа'" />
         <div class="order-wrapper">
             <div class="order-form">
-                <AppForm :title="'Данные покупателя'" @submitForm="submitForm">
+                <Form :title="'Данные покупателя'" @submitForm="submitForm">
                     <template #input>
-                        <AppInput id="username" type="text" label="Имя" v-model="formData.username"
+                        <Input id="username" type="text" label="Имя" v-model="formData.username"
                             :errorMessage="errors.username" />
-                        <AppInput id="email" type="email" label="E-mail" v-model="formData.email"
+                        <Input id="email" type="email" label="E-mail" v-model="formData.email"
                             :errorMessage="errors.email" />
-                        <AppInput id="tel" type="tel" label="Телефон" v-model="formData.tel" :errorMessage="errors.tel" />
+                        <Input id="tel" type="tel" label="Телефон" v-model="formData.tel" :errorMessage="errors.tel" />
                     </template>
-                </AppForm>
+                </Form>
 
-                <AppForm :title="'Адрес получателя'" @submitForm="submitForm">
+                <Form :title="'Адрес получателя'" @submitForm="submitForm">
                     <template #input>
-                        <AppInput id="country" type="text" label="Страна" v-model="formData.country"
+                        <Input id="country" type="text" label="Страна" v-model="formData.country"
                             :errorMessage="errors.country" />
-                        <AppInput id="city" type="text" label="Город" v-model="formData.city" :errorMessage="errors.city" />
-                        <AppInput id="street" type="text" label="Улица" v-model="formData.street"
+                        <Input id="city" type="text" label="Город" v-model="formData.city" :errorMessage="errors.city" />
+                        <Input id="street" type="text" label="Улица" v-model="formData.street"
                             :errorMessage="errors.street" />
-                        <AppInput id="home" type="text" label="Дом" v-model="formData.home" :errorMessage="errors.home" />
-                        <AppInput id="checkbox" type="checkbox" label="Частный дом" v-model="formData.apartmentNumber" />
-                        <AppInput v-show="!formData.apartmentNumber" checked id="apartment" type="text" label="Квартира" v-model="formData.apartment" />
+                        <Input id="home" type="text" label="Дом" v-model="formData.home" :errorMessage="errors.home" />
+                        <Input id="checkbox" type="checkbox" label="Частный дом" v-model="formData.apartmentNumber" />
+                        <Input v-show="!formData.apartmentNumber" checked id="apartment" type="text" label="Квартира" v-model="formData.apartment" />
                     </template>
-                </AppForm>
+                </Form>
 
-                <AppForm :title="'Комментарии'" @submitForm="submitForm">
+                <Form :title="'Комментарии'" @submitForm="submitForm">
                     <template #input>
-                        <AppTextArea id="message" name="message" label="Сообщение" v-model="formData.message" />
+                        <TextArea id="message" name="message" label="Сообщение" v-model="formData.message" />
                     </template>
-                </AppForm>
+                </Form>
             </div>
             <div class="order-data">
                 <h4 class="order-data__title">Ваш заказ</h4>
@@ -204,15 +204,15 @@ watch(
                     </div>
                 </div>
                 <div class="order-data__pay">
-                    <AppForm :title="'Способ оплаты'" @submitForm="submitForm">
+                    <Form :title="'Способ оплаты'" @submitForm="submitForm">
                         <template #input>
-                            <AppInput type="radio" checked id="cash" value="Наличные" label="Оплата наличными"
+                            <Input type="radio" checked id="cash" value="Наличные" label="Оплата наличными"
                                 name="payment" v-model="formData.payment" />
-                            <AppInput type="radio" id="card" value="Карта" label="Оплата картой" name="payment"
+                            <Input type="radio" id="card" value="Карта" label="Оплата картой" name="payment"
                                 v-model="formData.payment" />
-                            <AppButton :title="'Разместить заказ'" :type="'submit'" />
+                            <Button :title="'Разместить заказ'" :type="'submit'" />
                         </template>
-                    </AppForm>
+                    </Form>
                 </div>
             </div>
 

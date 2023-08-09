@@ -1,7 +1,7 @@
 <script setup>
 import Footer from "@/Layouts/Footer.vue";
 import Menu from "@/Layouts/Menu.vue";
-import AppModal from "./components/AppModal.vue";
+import AppModal from "./components/Modal.vue";
 
 </script>
 

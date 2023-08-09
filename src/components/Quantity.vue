@@ -1,5 +1,12 @@
+<!-- eslint-disable vue/multi-word-component-names -->
+<template>
+    <div class="quantity">
+        <div class="quantity-content">Показано: {{ count}} из {{ totalCount }} товаров</div>
+    </div>
+</template>
+
 <script setup>
-const props = defineProps({
+defineProps({
     totalCount: {
         type: Number
     },
@@ -7,16 +14,9 @@ const props = defineProps({
         type: Number,
         default: 9
     }
-
 })
  
 </script>
-
-<template>
-    <div class="quantity">
-        <div class="quantity-content">Показано: {{ count}} из {{ totalCount }} товаров</div>
-    </div>
-</template>
 
 <style lang="scss" scoped>
 .quantity {

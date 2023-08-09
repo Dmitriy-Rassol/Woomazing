@@ -1,12 +1,13 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import AppTitleSection from './AppTitleSection.vue';
-import AppSlider from './AppSlider.vue';
+import AppTitleSection from '../TitleSection.vue';
+import AppSlider from '../Slider.vue';
 import { TEAM } from '@/shared/constant.js'
 
 </script>
 
 <template>
-    <div class="team">
+    <div class="team section">
         <AppTitleSection :title="'Команда мечты Womazing'" />
         <div class="team-wrapper">
             <AppSlider class="slider" :classActive="'team-pagination'" :sliderContent="TEAM" :navigation="true">

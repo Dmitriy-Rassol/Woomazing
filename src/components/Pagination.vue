@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import IconArrowPagination from '../components/icons/iconArrowPagination.vue'
+import IconArrowPagination from './icons/arrows/iconArrowPagination.vue'
 import { useFilterStore } from '../stores/FilterStore';
 import { computed } from 'vue';
 

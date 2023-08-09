@@ -1,8 +1,8 @@
 <script setup>
 import Menu from "./Menu.vue";
-import IconInstagram from '@/components/icons/IconInstagram.vue';
-import IconFacebook from '@/components/icons/IconFacebook.vue';
-import IconTwitter from '@/components/icons/IconTwitter.vue';
+import IconInstagram from '@/components/icons/social/IconInstagram.vue';
+import IconFacebook from '@/components/icons/social/IconFacebook.vue';
+import IconTwitter from '@/components/icons/social/IconTwitter.vue';
 import IconCard from '@/components/icons/IconCard.vue'
 </script>
 

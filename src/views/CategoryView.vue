@@ -7,7 +7,7 @@ import { useProductsStore } from '@/stores/ProductsStore';
 import { onMounted, computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useFilterStore } from '../stores/FilterStore';
-import AppButton from '../components/AppButton.vue';
+import Button from '../components/Button.vue';
 import { CATEGORY } from '../shared/constant';
 const filterStore = useFilterStore();
 const productsStore = useProductsStore();
@@ -57,9 +57,9 @@ function setCategory() {
             <Pagination :data="pagination" />
         </div>
 
-        <div class="category__not-found">
+        <div v-else class="category__not-found">
             <h2>Категория товаров не найдена</h2>
-            <AppButton :title="'Назад'" @path="$router.push('/shop/category')"/>
+            <Button :classTransparent="true" :title="'Назад'" @path="$router.push('/shop/category')"/>
         </div>
 
 

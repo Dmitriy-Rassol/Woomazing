@@ -27,16 +27,12 @@ defineProps({
 <style lang="scss" scoped>
 .submenu {
     position: absolute;
-    top: 39px;
+    margin-top: 39px;
     z-index: 10;
 
     &-list {
         display: flex;
         flex-direction: column;
-    }
-
-    &-item {
-        position: relative;
     }
 
     &-item__link {

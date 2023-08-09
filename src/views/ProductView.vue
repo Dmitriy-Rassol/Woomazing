@@ -4,12 +4,12 @@ import { useProductsStore } from "../stores/ProductsStore";
 import { useFilterStore } from "../stores/FilterStore";
 import { useCartStore } from "../stores/CartStore";
 import { useRoute } from "vue-router";
-import AppTitlePage from '@/components/AppTitlePage.vue';
-import AppTitleSection from '@/components/AppTitleSection.vue'
+import TitlePage from '@/components/TitlePage.vue';
+import TitleSection from '@/components/TitleSection.vue'
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
-import AppButton from '@/components/AppButton.vue';
-import AppAlert from '@/components/AppAlert.vue';
-import ProductSkeleton from "../components/Loaders/ProductSkeleton.vue";
+import Button from '@/components/Button.vue';
+import Alert from '@/components/Alert.vue';
+import ProductSkeleton from "@/components/Skeletons/ProductSkeleton.vue";
 import { CATEGORY } from "@/shared/constant";
 import Size from "@/components/Size.vue";
 import Products from '@/components/Products/Products.vue';
@@ -21,36 +21,33 @@ const productsStore = useProductsStore();
 const route = useRoute();
 
 const state = reactive({
-    details: '',
+    details: [],
     category: '',
     quantity: 1,
-    relatedProducts: ''
 });
 
 const product = computed(() => {
-    return state.details
+    return state.details || {}
 })
 
 const category = computed(() => {
     return state.category
 })
 
+
 const related = computed(() => {
-    return [...productsStore.relatedProducts];
+    return productsStore.relatedProducts || {};
 })
 
 async function fetchDetails() {
     await productsStore.getDetails(route.params.id);
     state.details = productsStore.product[0] || {};
-    let type = CATEGORY.find(item => item.type === state.details.type)
-    if (type) {
-        state.category = type.title
-    }
+    let type = CATEGORY.find(item => item.type === state.details.type && item.type === route.params.type)
+     if(type) state.category = type.title 
 }
 
 async function fetchRelatedProducts() {
     await productsStore.getRelatedProducts(route.params.type);
-    state.relatedProducts = productsStore.relatedProducts || {};
 }
 
 
@@ -59,7 +56,7 @@ function productCount(item) {
     if (item == 'minus' && state.quantity > 1) {
         --state.quantity;
     }
-    if (item == 'plus' && state.quantity < state.details.quantity) {
+    if (item == 'plus' && state.quantity < filterStore.sizeQuantity) {
         ++state.quantity;
     }
 }
@@ -84,7 +81,16 @@ watch(
         if (route.params.id) {
             fetchDetails();
             fetchRelatedProducts();
+        }
+    },
+    { immediate: true, deep: true }
+);
 
+watch(
+    () => filterStore.sizeQuantity,
+    () => {
+        if (filterStore.sizeQuantity) {
+            state.quantity = 1
         }
     },
     { immediate: true, deep: true }
@@ -93,12 +99,11 @@ watch(
 </script>
 
 <template>
-    <AppAlert :message="'В корзине'" :isActive="filterStore.activeAlert" />
-
-    <div class="product-details">
-        <AppTitlePage :title="product.title" />
-        <Breadcrumbs :section="category" :path="`shop/category/${state.details.type}`" :title="product.title"/>
-        <ProductSkeleton v-if="!product"/>
+    <Alert :message="'В корзине'" :isActive="filterStore.activeAlert" />
+    <div class="product-details section">
+        <TitlePage :title="product.title && category || 'Товар не найден'" />
+        <Breadcrumbs :section="category || 'Товар не найден' " :path="`shop/category/${state.details.type}`" :title="category ? product.title : ''"/>
+        <ProductSkeleton v-if="!product || !category"/>
         <div v-else class="product-details__wrapper">
             <div class="product-details__img">
                 <img :src="`/src/assets/img/products/${product.type}/${product.url}`" :alt="product.title">
@@ -109,7 +114,7 @@ watch(
                     <p class="product-details__price--old" v-if="product.oldPrice">${{ product.oldPrice }}</p>
                 </div>
                 <div class="product-details__size">
-                    <Size :size="product.size" />
+                    <Size :sizes="product.sizes" />
                 </div>
                 <div class="product-details__desc">
                     <h3 class="product-details__desc--title">Описание</h3>
@@ -120,11 +125,11 @@ watch(
                     <div class="count">{{ state.quantity }}</div>
                     <button type="button" class="btn-plus" @click="productCount('plus')">+</button>
                 </div>
-                <AppButton :title="'Добавить в корзину'" @click="addProductCart" />
+                <Button :title="'Добавить в корзину'" @click="addProductCart" />
             </div>
         </div>
-        <div>
-            <AppTitleSection :title="'Связанные товары'" />
+        <div class="section" v-if="related">
+            <TitleSection :title="'Связанные товары'" />
             <Products :products="related" />
         </div>
     </div>
@@ -133,8 +138,6 @@ watch(
 <style lang="scss" scoped>
 
 .product-details {
-    padding: 130px 0;
-
     &__wrapper {
         display: flex;
         gap: 74px;
