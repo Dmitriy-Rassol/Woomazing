@@ -1,7 +1,8 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import AppForm from './AppForm.vue';
-import AppInput from './AppInput.vue';
-import AppButton from './AppButton.vue';
+import AppForm from './form/Form.vue';
+import AppInput from './form/Input.vue';
+import AppButton from './Button.vue';
 import IconClose from './icons/IconClose.vue';
 
 import { reactive, ref } from 'vue';

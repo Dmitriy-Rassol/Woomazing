@@ -1,7 +1,7 @@
 <script setup>
-import AppTitleSection from '@/components/AppTitleSection.vue'
-import Products from './Products/Products.vue';
-import AppButton from './AppButton.vue';
+import TitleSection from '@/components/TitleSection.vue'
+import Products from '../Products/Products.vue';
+import Button from '../Button.vue';
 import { useProductsStore } from '@/stores/ProductsStore';
 import { useFilterStore } from '@/stores/FilterStore';
 import { onMounted, computed } from 'vue';
@@ -21,10 +21,10 @@ const productsNew = computed(() => {
 </script>
 
 <template>
-   <div class="new-collection">
-    <AppTitleSection :title="'Новая коллекция'"/>
+   <div class="new-collection section">
+    <TitleSection :title="'Новая коллекция'"/>
     <Products :products="productsNew" :load="filterStore.isLoader"/>
-    <AppButton class="center" @path="$router.push('/shop/category')"/>
+    <Button class="center" :classTransparent="true" @path="$router.push('/shop/category')"/>
    </div>
 </template>
 

@@ -5,14 +5,14 @@
   --font: 'Raleway', sans-serif;
   --color-black: #000000;
   --color-white: #ffffff;
-  --primary: #6e9c9f;
+  --primary: #6E9C9F;
   --primary-hover: #509498;
-  --bg-lase: #f1eadc;
+  --bg-lase: #F1EADC;
   --color-price: #9c9c9c;
   --color-gray: #919191;
   --color-quantity: #808080;
   --label: #868686;
-  --invalid: #e45c5c;
+  --invalid: #E45C5C;
   --tr: .5s ease;
 }
 
@@ -32,6 +32,11 @@ a {
   max-width: 1100px;
   padding: 0 10px;
   margin: 0 auto;
+}
+
+.section {
+  margin-top: 130px;
+  margin-bottom: 130px;
 }
 
 .center {

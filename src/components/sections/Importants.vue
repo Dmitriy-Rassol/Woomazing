@@ -1,10 +1,11 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import AppTitleSection from './AppTitleSection.vue'
-import { IMPORTANTS } from '../shared/constant.js'
+import AppTitleSection from '../TitleSection.vue'
+import { IMPORTANTS } from '../../shared/constant.js'
 </script>
 
 <template>
-    <div class="importants">
+    <div class="importants section">
         <AppTitleSection :title="'Что для нас важно'" />
         <div class="importants-list">
             <div class="importants-list__item" v-for="(important, i) in IMPORTANTS" :key="i">

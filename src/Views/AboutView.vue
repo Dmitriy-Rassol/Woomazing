@@ -1,7 +1,7 @@
 <script setup>
-import AppTitlePage from '@/components/AppTitlePage.vue';
+import TitlePage from '@/components/TitlePage.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
-import AppButton from '@/components/AppButton.vue'
+import Button from '@/components/Button.vue'
 
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
@@ -14,8 +14,8 @@ const name = computed(() => {
 </script>
 
 <template>
-    <div class="about">
-        <AppTitlePage :title="name" />
+    <div class="about section">
+        <TitlePage :title="name" />
         <Breadcrumbs :section="name" />
         <div class="about-wrapper">
             <div class="about-content">
@@ -48,16 +48,13 @@ const name = computed(() => {
                     <img src="src/assets/img/about/about-2.png" alt="about-2">
                 </div>
             </div>
-            <AppButton class="center" @path="$router.push('/shop/category')" />
+            <Button class="center" @path="$router.push('/shop/category')" />
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 .about {
-    padding-top: 190px;
-    padding-bottom: 130px;
-
     &-content {
         display: flex;
         justify-content: space-between;

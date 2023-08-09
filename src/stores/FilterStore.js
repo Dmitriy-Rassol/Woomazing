@@ -4,6 +4,7 @@ export const useFilterStore = defineStore('filter', {
   state: () => ({
     activeTab: 0,
     activeSize: 0,
+    sizeQuantity: 1,
     active: false,
     currentCategory: 'all',
     titleCategory: '',
@@ -23,9 +24,10 @@ export const useFilterStore = defineStore('filter', {
       this.activePage = 0
     },
 
-    setActiveSize(id, size) {
+    setActiveSize(id, tab) {
       this.activeSize = id
-      this.titleSize = size
+      this.titleSize = tab.seze
+      this.sizeQuantity = tab.quantity
     },
 
     setActiveCategory(type, title) {

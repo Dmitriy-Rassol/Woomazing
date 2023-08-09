@@ -13,7 +13,6 @@ export const useProductsStore = defineStore('productsStore', {
   }),
   actions: {
     async fetchCollection() {
-      this.products = []
       this.filterStore.isLoader = true
       if (this.filterStore.currentCategory == 'all') {
         await axios.get(URL).then((response) => {
@@ -21,15 +20,15 @@ export const useProductsStore = defineStore('productsStore', {
         })
       } else {
         await axios.get(URL).then((response) => {
-          const res = response.data.toReversed()
-          this.products = res.filter((item) => item.type == this.filterStore.currentCategory)
+          this.products = response.data
+            .toReversed()
+            .filter((item) => item.type == this.filterStore.currentCategory)
         })
       }
       this.filterStore.isLoader = false
     },
     async fetchCollectionNew() {
       this.filterStore.isLoader = true
-      this.productsNew = []
       await axios.get(URL).then((response) => {
         this.productsNew = response.data.toReversed().slice(0, 3)
         this.filterStore.isLoader = false
@@ -38,7 +37,6 @@ export const useProductsStore = defineStore('productsStore', {
     },
     async getRelatedProducts(type) {
       this.filterStore.isLoader = true
-      this.relatedProducts = []
       await axios.get(URL).then((response) => {
         this.relatedProducts = response.data
           .toReversed()
@@ -51,11 +49,12 @@ export const useProductsStore = defineStore('productsStore', {
     },
     async getDetails(id) {
       this.filterStore.isLoader = true
-      this.product = []
       await axios.get(URL).then((response) => {
-        this.product = response.data.filter((item) => item.id == id)
-        this.filterStore.isLoader = false
-        return this.product
+        let idProduct = response.data.find((item) => item.id == id)
+        if (idProduct) {
+          this.filterStore.isLoader = false
+         return this.product = response.data.filter((item) => item.id == id)  
+        }
       })
     }
   }

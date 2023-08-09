@@ -1,6 +1,6 @@
 <script setup>
-import AppSlider from '@/components/AppSlider.vue';
-import AppButton from '@/components/AppButton.vue'
+import Slider from '@/components/Slider.vue';
+import Button from '@/components/Button.vue'
 import { HEADER_SLIDER } from '@/shared/constant';
 
 </script>
@@ -8,15 +8,15 @@ import { HEADER_SLIDER } from '@/shared/constant';
 <template>
     <div class="header">
         <div class="header-wrapper">
-            <AppSlider class="header-slider" :sliderContent="HEADER_SLIDER" :navigation="false">
+            <Slider class="header-slider" :sliderContent="HEADER_SLIDER" :navigation="false">
                 <template #content="slotProps">
                     <h1 class="header-slider__title">{{ slotProps.title }}</h1>
                     <p class="header-slider__desc">{{ slotProps.desc }}</p>
                 </template>
                 <template #btn>
-                    <AppButton class="header-slider__btn" :arrow="true" @path="$router.push('/shop/category')" />
+                    <Button class="header-slider__btn" :arrow="true" @path="$router.push('/shop/category')" />
                 </template>
-            </AppSlider>
+            </Slider>
             <div class="header-img">
                 <ProgressiveImage lazy-placeholder placeholder-src="src/assets/img/header/header-main.png"
                     src='src/assets/img/header/header-main.png' alt="main" />
@@ -27,13 +27,11 @@ import { HEADER_SLIDER } from '@/shared/constant';
 
 <style lang="scss" scoped>
 .header {
-    position: relative;
-    padding-bottom: 120px;
     &::before {
         position: absolute;
         content: '';
         width: 100%;
-        height: 821px;
+        height: 825px;
         top: 0;
         left: calc(50% + 75px);
         z-index: -2;
@@ -42,7 +40,7 @@ import { HEADER_SLIDER } from '@/shared/constant';
 
     &-wrapper {
         display: grid;
-        grid-template-columns: minmax(0, 665px) minmax(200px, 410px);
+        grid-template-columns: minmax(500px, 665px) minmax(200px, 410px);
         grid-template-rows: 1fr;
         grid-column-gap: 0px;
         grid-row-gap: 0px;
@@ -71,8 +69,8 @@ import { HEADER_SLIDER } from '@/shared/constant';
             position: absolute;
             content: '';
             top: 0;
-            right: -20%;
-            bottom: 0;
+            right: -160px;
+            bottom: 90px;
             left: 0;
             z-index: 10;
             background: url('/src/assets/img/header/header-right.png') no-repeat center right;

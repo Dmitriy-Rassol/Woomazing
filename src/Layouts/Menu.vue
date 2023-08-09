@@ -5,14 +5,14 @@ import { ref } from 'vue';
 import { useCartStore } from "../stores/CartStore";
 import IconLogo from '@/components/icons/IconLogo.vue';
 import IconCart from '@/components/icons/IconCart.vue';
-import IconPhone from '@/components/icons/IconPhone.vue';
-import IconPhoneHover from '@/components/icons/IconPhoneHover.vue';
-import SubMenu from '../components/SubMenu.vue';
+import IconPhone from '@/components/icons/phone/IconPhone.vue';
+import IconPhoneHover from '@/components/icons/phone/IconPhoneHover.vue';
+import SubMenu from './SubMenu.vue';
 import { useFilterStore } from "../stores/FilterStore";
 
 const filterStore = useFilterStore();
 const cartStore = useCartStore();
-const isHover = ref(false);
+const isModal = ref(false);
 
 defineProps({
     isFooter: {
@@ -38,17 +38,17 @@ const vScroll = {
 
 const handleScroll = (evt, el) => {
     if (window.scrollY > 17 && el.parentElement.className !== 'footer-wrapper container') {
-        el.classList.add('color-scroll');
+        el.classList.add('nav-scroll');
     }
     if (window.scrollY < 17) {
-        el.classList.remove('color-scroll');
+        el.classList.remove('nav-scroll');
     }
 }
 
 </script>
 
 <template>
-    <div v-scroll="handleScroll" :class="[{ 'fixed': !isFooter }]">
+    <div v-scroll="handleScroll" :class="[{ 'nav-fixed': !isFooter }]">
         <div class="container nav">
             <div class="nav-logo">
                 <IconLogo />
@@ -65,10 +65,10 @@ const handleScroll = (evt, el) => {
                 </div>
             </div>
             <div class="nav-phone">
-                <button class="nav-phone__btn" @click="filterStore.activeModal = true" @mouseover="isHover = true"
-                    @mouseout="isHover = false">
+                <button class="nav-phone__btn" @click="filterStore.activeModal = true" @mouseover="isModal = true"
+                    @mouseout="isModal = false">
                     <Transition name="fade" v-if="!isFooter">
-                        <IconPhone class="nav-phone__svg" v-if="!isHover" />
+                        <IconPhone class="nav-phone__svg" v-if="!isModal" />
                         <IconPhoneHover class="nav-phone__svg" v-else />
                     </Transition>
                     {{ PHONE }}
@@ -83,26 +83,6 @@ const handleScroll = (evt, el) => {
 </template>
 
 <style lang="scss" scoped>
-.fixed {
-    width: 100%;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    padding: 34px 0;
-    margin-top: 17px;
-    transition: all var(--tr);
-    background-color: transparent;
-
-}
-
-.color-scroll {
-    -webkit-box-shadow: 0px 19px 10px 2px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 0px 19px 10px 2px rgba(34, 60, 80, 0.2);
-    box-shadow: 0px 19px 10px 2px rgba(34, 60, 80, 0.2);
-    background-color: var(--color-white);
-    transition: all var(--tr);
-}
-
 .nav {
     display: flex;
     justify-content: space-between;
@@ -110,6 +90,23 @@ const handleScroll = (evt, el) => {
     font-size: 15px;
     letter-spacing: 0.02em;
 
+    &-fixed {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        padding: 51px 0 34px;
+        transition: all var(--tr);
+        background-color: transparent;
+    }
+
+    &-scroll {
+        -webkit-box-shadow: 0px 19px 10px 2px rgba(34, 60, 80, 0.2);
+        -moz-box-shadow: 0px 19px 10px 2px rgba(34, 60, 80, 0.2);
+        box-shadow: 0px 19px 10px 2px rgba(34, 60, 80, 0.2);
+        background-color: var(--color-white);
+        transition: all var(--tr);
+    }
 
     &-logo {
         display: flex;
@@ -125,7 +122,7 @@ const handleScroll = (evt, el) => {
     }
 
     &-item {
-        position: relative;
+        position: sticky;
     }
 
     &-item__link {
@@ -142,13 +139,12 @@ const handleScroll = (evt, el) => {
     }
 
     &-item__submenu {
-        display: none;
+        visibility: hidden;
         opacity: 0;
-
     }
 
     &-item__submenu--active {
-        display: block;
+        visibility: visible;
         opacity: 1;
     }
 

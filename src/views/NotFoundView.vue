@@ -5,14 +5,14 @@
             <h1>404</h1>
             <span>Произошла ошибка</span>
             <span>Данная страница не найдена</span>
-            <AppButton :title="'На главную'" @path="$router.push('/')" />
+            <Button :classTransparent="true" :title="'На главную'" @path="$router.push('/')" />
         </div>
     </div>
 </template>
 
 <script setup>
 import IconNotFound from '../components/icons/IconNotFound.vue'
-import AppButton from '../components/AppButton.vue'
+import Button from '../components/Button.vue'
 </script>
 
 <style lang="scss" scoped>

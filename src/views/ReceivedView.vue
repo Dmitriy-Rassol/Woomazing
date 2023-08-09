@@ -1,15 +1,15 @@
 <script setup>
-import AppTitlePage from '@/components/AppTitlePage.vue';
+import TitlePage from '@/components/TitlePage.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import IconCheck from '@/components/icons/IconCheck.vue';
-import AppButton from '@/components/AppButton.vue';
+import Button from '@/components/Button.vue';
 
 </script>
 
 <template>
   <div class="received">
     <div class="received-wrapper">
-      <AppTitlePage :title="'Заказ получен'" />
+      <TitlePage :title="'Заказ получен'" />
       <Breadcrumbs :section="'Оформление заказа'" :path="'order'" :title="'Заказ получен'" />
       <div class="received-content">
         <div class="received-check">
@@ -19,7 +19,7 @@ import AppButton from '@/components/AppButton.vue';
             <p>Мы свяжемся с вами в ближайшее время!</p>
           </div>
         </div>
-        <AppButton :title="'Перейти на главную'" @path="$router.push('/')" />
+        <Button :classTransparent="true" :title="'Перейти на главную'" @path="$router.push('/')" />
       </div>
 
     </div>

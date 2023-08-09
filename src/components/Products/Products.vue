@@ -1,5 +1,5 @@
 <script setup>
-import ProductCardSkeleton from "../Loaders/ProductCardSkeleton.vue";
+import ProductCardSkeleton from "../Skeletons/ProductCardSkeleton.vue";
 import ProductCard from "./ProductCard.vue";
 defineProps({
     products: {

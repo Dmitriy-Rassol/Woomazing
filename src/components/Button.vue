@@ -1,5 +1,6 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import IconArrowDown from './icons/IconArrowDown.vue';
+import IconArrowDown from './icons/arrows/IconArrowDown.vue';
 
 defineProps({
     title: {
@@ -16,6 +17,11 @@ defineProps({
         type: String,
         default: 'button',
         require: true,
+    },
+    classTransparent: {
+        type: Boolean,
+        default: false,
+        require: true,
     }
 })
 
@@ -29,7 +35,7 @@ const emit = defineEmits(['path'])
         <div class="btn-arrow" v-if="arrow">
             <IconArrowDown />
         </div>
-        <span class="btn-primary">{{ title }}</span>
+        <span :class="!classTransparent ? 'btn-primary' : 'btn-transparent'">{{ title }}</span>
     </button>
    </div>
 </template>
@@ -43,6 +49,11 @@ const emit = defineEmits(['path'])
         background: var(--primary-hover);
     }
 
+    &:hover .btn-transparent {
+        background: var(--primary);
+        color: var(--color-white);
+    }
+
     &-arrow {
         display: flex;
         justify-content: center;
@@ -51,11 +62,19 @@ const emit = defineEmits(['path'])
         background: rgba(110, 156, 159, 0.1);
     }
 
+    &-transparent {
+        color: var(--primary);
+        padding: 21px 49px;
+        border: 1px solid var(--primary);
+        transition: all var(--tr);
+    }
+
     &-primary {
         color: var(--color-white);
-        background: #6E9C9F;
         padding: 22px 50px;
+        border: none;
         transition: all var(--tr);
+        background: var(--primary);
     }
 
 }

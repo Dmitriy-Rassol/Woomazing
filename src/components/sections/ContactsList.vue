@@ -1,5 +1,5 @@
 <script setup>
-import { CONTACTS } from '../shared/constant';
+import { CONTACTS } from '../../shared/constant';
 </script>
 
 <template>

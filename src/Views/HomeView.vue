@@ -1,8 +1,8 @@
 <script setup>
-import Header from '@/components/Header.vue';
-import NewCollection from '../components/NewCollection.vue';
-import Importants from '../components/Importants.vue';
-import Team from '@/components/Team.vue';
+import Header from '@/components/sections/Header.vue';
+import NewCollection from '@/components/sections/NewCollection.vue';
+import Importants from '@/components/sections/Importants.vue';
+import Team from '@/components/sections/Team.vue';
 
 </script>
 
@@ -16,7 +16,4 @@ import Team from '@/components/Team.vue';
 </template>
 
 <style lang="scss" scoped>
-.home {
-    padding-bottom: 130px;
-}
 </style>
