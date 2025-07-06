@@ -50,3 +50,15 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+## Admin panel and server
+
+The project includes a minimal Express server with MongoDB. Start it with:
+
+```sh
+npm run start:server
+```
+
+The server uses `MONGO_URL` environment variable (default `mongodb://localhost:27017/woomazing`).
+An admin panel is available at `/admin` where products can be managed.
+
