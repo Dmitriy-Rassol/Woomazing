@@ -56,6 +56,11 @@ const router = createRouter({
       component: () => import('@/views/ReceivedView.vue')
     },
     {
+      path: '/admin',
+      name: 'Админ',
+      component: () => import('@/views/AdminView.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: '404',
       component: () => import('@/views/NotFoundView.vue')
