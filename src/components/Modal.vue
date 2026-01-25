@@ -3,7 +3,7 @@
 import AppForm from './form/Form.vue';
 import AppInput from './form/Input.vue';
 import AppButton from './Button.vue';
-import IconClose from './icons/IconClose.vue';
+import IconClose from '@/components/icons/IconClose.vue';
 
 import { reactive, ref } from 'vue';
 import { useFilterStore } from "../stores/FilterStore";
