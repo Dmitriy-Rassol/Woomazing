@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useFilterStore } from './FilterStore'
-const URL = 'https://64bd19e32320b36433c76a5a.mockapi.io/products'
 
 export const useProductsStore = defineStore('productsStore', {
   state: () => ({
@@ -15,11 +14,11 @@ export const useProductsStore = defineStore('productsStore', {
     async fetchCollection() {
       this.filterStore.isLoader = true
       if (this.filterStore.currentCategory == 'all') {
-        await axios.get(URL).then((response) => {
+        await axios.get('/products.json').then((response) => {
           this.products = response.data.toReversed()
         })
       } else {
-        await axios.get(URL).then((response) => {
+        await axios.get('/products.json').then((response) => {
           this.products = response.data
             .toReversed()
             .filter((item) => item.type == this.filterStore.currentCategory)
@@ -29,7 +28,7 @@ export const useProductsStore = defineStore('productsStore', {
     },
     async fetchCollectionNew() {
       this.filterStore.isLoader = true
-      await axios.get(URL).then((response) => {
+      await axios.get('/products.json').then((response) => {
         this.productsNew = response.data.toReversed().slice(0, 3)
         this.filterStore.isLoader = false
         return this.productsNew
@@ -37,7 +36,7 @@ export const useProductsStore = defineStore('productsStore', {
     },
     async getRelatedProducts(type) {
       this.filterStore.isLoader = true
-      await axios.get(URL).then((response) => {
+      await axios.get('/products.json').then((response) => {
         this.relatedProducts = response.data
           .toReversed()
           .filter((item) => item.type == type)
@@ -49,7 +48,7 @@ export const useProductsStore = defineStore('productsStore', {
     },
     async getDetails(id) {
       this.filterStore.isLoader = true
-      await axios.get(URL).then((response) => {
+      await axios.get('/products.json').then((response) => {
         let idProduct = response.data.find((item) => item.id == id)
         if (idProduct) {
           this.filterStore.isLoader = false
