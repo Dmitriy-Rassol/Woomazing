@@ -6,59 +6,59 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/HomeView.vue')
+      component: () => import('@/Views/HomeView.vue')
     },
     {
       path: '/about',
       name: 'О бренде',
-      component: () => import('@/views/AboutView.vue')
+      component: () => import('@/Views/AboutView.vue')
     },
     {
       path: '/shop',
       name: 'Магазин',
-      component: () => import('@/views/ShopView.vue'),
+      component: () => import('@/Views/ShopView.vue'),
       children: [
         {
           path: 'category',
           name: 'Магазин',
-          component: () => import('@/views/CategoryAllView.vue')
+          component: () => import('@/Views/CategoryAllView.vue')
         },
         {
           path: 'category/:type',
           name: 'Категории',
-          component: () => import('@/views/CategoryView.vue')
+          component: () => import('@/Views/CategoryView.vue')
         }
       ]
     },
     {
       path: '/contacts',
       name: 'Контакты',
-      component: () => import('@/views/ContactsView.vue')
+      component: () => import('@/Views/ContactsView.vue')
     },
     {
       path: '/product/:type/:id',
       name: 'Товар',
-      component: () => import('@/views/ProductView.vue')
+      component: () => import('@/Views/ProductView.vue')
     },
     {
       path: '/cart',
       name: 'Корзина',
-      component: () => import('@/views/CartView.vue')
+      component: () => import('@/Views/CartView.vue')
     },
     {
       path: '/order',
       name: 'Оформить заказ',
-      component: () => import('@/views/OrderView.vue')
+      component: () => import('@/Views/OrderView.vue')
     },
     {
       path: '/received',
       name: 'Заказ оформлен',
-      component: () => import('@/views/ReceivedView.vue')
+      component: () => import('@/Views/ReceivedView.vue')
     },
     {
       path: '/:pathMatch(.*)*',
       name: '404',
-      component: () => import('@/views/NotFoundView.vue')
+      component: () => import('@/Views/NotFoundView.vue')
     }
   ],
   scrollBehavior() {
