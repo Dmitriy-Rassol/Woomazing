@@ -19,7 +19,7 @@ defineProps({
         <router-link class="card-link" :to="`/product/${product.type}/${product.id}`">
             <div class="card-img">
                 <IconArrowRight class="card-img__arrow" />
-                <img :src="`/src/assets/img/products/${product.type}/${product.url}`" :alt="product.title">
+                <img :src="`/img/products/${product.type}/${product.url}`" :alt="product.title">
             </div>
             <p class="card-title">{{ product.title }}</p>
             <div class="card-price">

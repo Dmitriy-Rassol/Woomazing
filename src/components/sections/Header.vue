@@ -18,8 +18,8 @@ import { HEADER_SLIDER } from '@/shared/constant';
                 </template>
             </Slider>
             <div class="header-img">
-                <ProgressiveImage lazy-placeholder placeholder-src="src/assets/img/header/header-main.png"
-                    src='src/assets/img/header/header-main.png' alt="main" />
+                <ProgressiveImage lazy-placeholder placeholder-src="/img/header/header-main.png"
+                    src='/img/header/header-main.png' alt="main" />
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@ import { HEADER_SLIDER } from '@/shared/constant';
             bottom: 0;
             left: -120px;
             z-index: 10;
-            background: url('/src/assets/img/header/header-left.png') no-repeat bottom left;
+            background: url('/img/header/header-left.png') no-repeat bottom left;
         }
 
         &::before {
@@ -73,7 +73,7 @@ import { HEADER_SLIDER } from '@/shared/constant';
             bottom: 90px;
             left: 0;
             z-index: 10;
-            background: url('/src/assets/img/header/header-right.png') no-repeat center right;
+            background: url('/img/header/header-right.png') no-repeat center right;
         }
     }
 

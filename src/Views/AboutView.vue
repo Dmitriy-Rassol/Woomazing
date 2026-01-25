@@ -20,7 +20,7 @@ const name = computed(() => {
         <div class="about-wrapper">
             <div class="about-content">
                 <div class="about-content__img">
-                    <img src='@/assets/img/about/about-1.png' alt="main">
+                    <img src='/img/about/about-1.png' alt="main">
                 </div>
                 <div class="about-content__text">
                     <h4 class="about-content__title">Идея и женщина</h4>
@@ -45,7 +45,7 @@ const name = computed(() => {
                         качественного prêt-a-porter попросту не существовало.</p>
                 </div>
                 <div class="about-content__img">
-                    <img src="@/assets/img/about/about-2.png" alt="about-2">
+                    <img src="/img/about/about-2.png" alt="about-2">
                 </div>
             </div>
             <Button class="center" @path="$router.push('/shop/category')" />

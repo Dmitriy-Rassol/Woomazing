@@ -106,7 +106,7 @@ watch(
         <ProductSkeleton v-if="!product || !category"/>
         <div v-else class="product-details__wrapper">
             <div class="product-details__img">
-                <img :src="`/src/assets/img/products/${product.type}/${product.url}`" :alt="product.title">
+                <img :src="`/img/products/${product.type}/${product.url}`" :alt="product.title">
             </div>
             <div class="product-details__content">
                 <div class="product-details__price">

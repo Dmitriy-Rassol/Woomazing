@@ -58,7 +58,7 @@ watch(
                         </button>
                         <router-link class="cart-item__link" :to="`product/${item.type}/${item.id}`">
                             <div class="cart-img">
-                                <img :src="`/src/assets/img/products/${item.type}/${item.img}`" :alt="item.title">
+                                <img :src="`/img/products/${item.type}/${item.img}`" :alt="item.title">
                             </div>
                             <div>{{ item.title }}</div>
                         </router-link>

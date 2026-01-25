@@ -9,7 +9,7 @@ import { IMPORTANTS } from '../../shared/constant.js'
         <AppTitleSection :title="'Что для нас важно'" />
         <div class="importants-list">
             <div class="importants-list__item" v-for="(important, i) in IMPORTANTS" :key="i">
-                <img :src="`src/assets/img/importants/${important.img}`" :alt="important.title">
+                <img :src="`/img/importants/${important.img}`" :alt="important.title">
                 <h4 class="importants-title">{{ important.title }}</h4>
                 <p class="importants-desc">{{ important.desc }}</p>
             </div>

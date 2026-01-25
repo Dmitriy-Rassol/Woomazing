@@ -12,7 +12,7 @@ import { TEAM } from '@/shared/constant.js'
         <div class="team-wrapper">
             <AppSlider class="slider" :classActive="'team-pagination'" :sliderContent="TEAM" :navigation="true">
                 <template #img="slotProps">
-                    <img :src="`src/assets/img/team_slider/${slotProps.img}`">
+                    <img :src="`/img/team_slider/${slotProps.img}`">
                 </template>
             </AppSlider>
             <div class="team-content">
